@@ -1,2 +1,2 @@
 # tic-tac-toe
-A tic-tac-toe game project from The Odin Project
+A tic tac toe game project from The Odin Project
