@@ -16,9 +16,9 @@ const gameboard = (function () {
     const boardArray = ["_", "_", "_", "_", "_", "_", "_", "_", "_"];
 
     const displayBoard = () => {
-        console.log(boardArray[0], boardArray[1], boardArray[2]);
-        console.log(boardArray[3], boardArray[4], boardArray[5]);
-        console.log(boardArray[6], boardArray[7], boardArray[8]);
+        // console.log(boardArray[0], boardArray[1], boardArray[2]);
+        // console.log(boardArray[3], boardArray[4], boardArray[5]);
+        // console.log(boardArray[6], boardArray[7], boardArray[8]);
         document.querySelector('.place1').innerText = boardArray[0];
         document.querySelector('.place2').innerText = boardArray[1];
         document.querySelector('.place3').innerText = boardArray[2];
@@ -31,6 +31,7 @@ const gameboard = (function () {
     };
 
     const updateBoard = (position) => {
+        console.log(counter)
         if (counter % 2 !== 0 && counter <= 9 && win === false) {
             let placementType = "X";
             if (gameboard.boardArray[position] === "X" || gameboard.boardArray[position] === "O") {
@@ -41,6 +42,7 @@ const gameboard = (function () {
                 gameController.checkWin(placementType);
                 counter++;
             }
+            console.log("Round " + counter);
             displayBoard();
         } else if (counter % 2 === 0 && counter <= 9 && win === false) {
             let placementType = "O"
@@ -52,6 +54,7 @@ const gameboard = (function () {
                 gameController.checkWin(placementType);
                 counter++;
             }
+            console.log("Round " + counter);
             displayBoard();
         }
     }
@@ -111,8 +114,40 @@ const gameController = (function () {
         player1InfoButton.classList.add('hidden');
         player2InfoButton.classList.add('hidden');
         counter = 1;
+        gameController.updateDisplay();
+
         // gameController.playRound(1);
     }
+
+    const updateDisplay = () => {
+        const player1 = player.getPlayerName(1);
+        const player2 = player.getPlayerName(2);
+        if (counter % 2 !== 0 && counter <= 9) {
+            displayElement.innerText = `${player1}'s turn!`;
+            playerTwoCard.classList.remove('your-turn');
+            playerOneCard.classList.add('your-turn');
+
+        } else if (counter % 2 === 0 && counter <= 9) {
+            displayElement.innerText = `${player2}'s turn!`;
+            playerOneCard.classList.remove('your-turn');
+            playerTwoCard.classList.add('your-turn');
+        }
+    }
+
+    // const getTurn = (num) => {
+    //     const player1 = player.getPlayerName(1);
+    //     const player2 = player.getPlayerName(2);
+    //     if (num % 2 !== 0 && num <= 9) {
+    //         displayElement.innerText = `${player1}'s turn!`;
+    //         playerTwoCard.classList.remove('your-turn');
+    //         playerOneCard.classList.add('your-turn');
+
+    //     } else if (num % 2 === 0 && num <= 9) {
+    //         displayElement.innerText = `${player2}'s turn!`;
+    //         playerOneCard.classList.remove('your-turn');
+    //         playerTwoCard.classList.add('your-turn');
+    //     }
+    // }
 
     // const playRound = (roundCounter) => {
     //     const player1 = player.getPlayerName(1);
@@ -265,7 +300,7 @@ const gameController = (function () {
         win = false;
     }
 
-    return { startGame, checkWin, gameWon, gameTied };
+    return { startGame, checkWin, gameWon, gameTied, updateDisplay };
 })();
 
 // gameController.startGame();
