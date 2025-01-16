@@ -53,6 +53,7 @@
                     class="gb-square place8 right-border">8</div>
                 <div onclick="gameboard.updateBoard(8); gameController.updateDisplay();" class="gb-square place9">9
                 </div>
+
             </div>
             <div class="player-two">
                 <div class="player-two-card">
@@ -74,7 +75,7 @@
     </div>
     <div class="buttons">
         <button class="start-game-btn" onclick="gameController.startGame()">Start Game</button>
-        <button class="restart-game-btn hidden">Restart Game</button>
+        <button class="restart-game-btn hidden" onclick="location.reload(true)">Restart Game</button>
     </div>
 </body>
 

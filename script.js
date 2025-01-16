@@ -16,9 +16,6 @@ const gameboard = (function () {
     const boardArray = ["_", "_", "_", "_", "_", "_", "_", "_", "_"];
 
     const displayBoard = () => {
-        // console.log(boardArray[0], boardArray[1], boardArray[2]);
-        // console.log(boardArray[3], boardArray[4], boardArray[5]);
-        // console.log(boardArray[6], boardArray[7], boardArray[8]);
         document.querySelector('.place1').innerText = boardArray[0];
         document.querySelector('.place2').innerText = boardArray[1];
         document.querySelector('.place3').innerText = boardArray[2];
@@ -56,6 +53,8 @@ const gameboard = (function () {
             }
             console.log("Round " + counter);
             displayBoard();
+        } else {
+            counter = 11
         }
     }
 
@@ -115,19 +114,41 @@ const gameController = (function () {
         player2InfoButton.classList.add('hidden');
         counter = 1;
         gameController.updateDisplay();
-
-        // gameController.playRound(1);
     }
+
+    // const restartGame = () => {
+    //     gameboard.boardArray = ["_", "_", "_", "_", "_", "_", "_", "_", "_"];
+    //     document.querySelector('.place1').innerText = gameboard.boardArray[0];
+    //     document.querySelector('.place2').innerText = gameboard.boardArray[1];
+    //     document.querySelector('.place3').innerText = gameboard.boardArray[2];
+    //     document.querySelector('.place4').innerText = gameboard.boardArray[3];
+    //     document.querySelector('.place5').innerText = gameboard.boardArray[4];
+    //     document.querySelector('.place6').innerText = gameboard.boardArray[5];
+    //     document.querySelector('.place7').innerText = gameboard.boardArray[6];
+    //     document.querySelector('.place8').innerText = gameboard.boardArray[7];
+    //     document.querySelector('.place9').innerText = gameboard.boardArray[8];
+    //     startGameButton.classList.remove('hidden');
+    //     restartGameButton.classList.add('hidden');
+    //     player1InfoButton.classList.remove('hidden');
+    //     player2InfoButton.classList.remove('hidden');
+    //     playerTwoCard.classList.remove('your-turn');
+    //     playerOneCard.classList.remove('your-turn');
+    //     displayElement.innerText = "Click Start Game to play."
+    //     counter = 0;
+    //     gameController.updateDisplay();
+    //     console.log(gameboard.boardArray)
+    // }
 
     const updateDisplay = () => {
         const player1 = player.getPlayerName(1);
         const player2 = player.getPlayerName(2);
-        if (counter % 2 !== 0 && counter <= 9) {
+        if (counter % 2 !== 0 && counter <= 9 && win === false) {
+            gameController.checkWin("X");
             displayElement.innerText = `${player1}'s turn!`;
             playerTwoCard.classList.remove('your-turn');
             playerOneCard.classList.add('your-turn');
-
-        } else if (counter % 2 === 0 && counter <= 9) {
+        } else if (counter % 2 === 0 && counter <= 9 && win === false) {
+            gameController.checkWin("O");
             displayElement.innerText = `${player2}'s turn!`;
             playerOneCard.classList.remove('your-turn');
             playerTwoCard.classList.add('your-turn');
@@ -292,6 +313,7 @@ const gameController = (function () {
 
     const gameWon = (player) => {
         console.log(player + " has won the game!");
+        displayElement.innerText = `${player} has won!`;
         win = true;
     }
 
@@ -303,7 +325,5 @@ const gameController = (function () {
     return { startGame, checkWin, gameWon, gameTied, updateDisplay };
 })();
 
-// gameController.startGame();
-// gameController.playRound(1);
 
 gameboard.displayBoard();
