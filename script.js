@@ -1,3 +1,12 @@
+const playerOneCard = document.querySelector('.player-one-card');
+const playerTwoCard = document.querySelector('.player-two-card');
+const playerOneForm = document.querySelector('#player-one-form');
+const playerTwoForm = document.querySelector('#player-two-form');
+const playerOneNameElement = document.querySelector('#p1-name');
+const playerTwoNameElement = document.querySelector('#p2-name');
+
+console.log(playerOneNameElement.innerText);
+
 
 // function for gameboard
 const gameboard = (function () {
@@ -16,8 +25,6 @@ const gameboard = (function () {
     return { boardArray, displayBoard, updateBoard };
 })();
 
-console.log(gameboard.boardArray);
-
 // function to handle gameplay
 let win = false;
 const gameController = (function () {
@@ -25,12 +32,7 @@ const gameController = (function () {
 
     const startGame = () => {
         gameboard.displayBoard();
-        const start = prompt("Would you like to play a game? (Y or N)");
-        if (start === "Y") {
-            gameController.playRound(1);
-        } else {
-            console.log("Game not started.")
-        }
+        gameController.playRound(1);
     }
 
     const playRound = (roundCounter) => {
@@ -38,6 +40,8 @@ const gameController = (function () {
         for (counter; counter < 10;) {
             if (counter % 2 !== 0 && counter <= 9 && win === false) {
                 console.log("Player 1 turn");
+                playerTwoCard.classList.remove('your-turn');
+                playerOneCard.classList.add('your-turn');
                 const inputType = "X";
                 const input = prompt("Where do you want to place your X? (0-8)");
                 if (input >= 0 && input <= 8) {
@@ -56,6 +60,8 @@ const gameController = (function () {
                 console.log("Round " + counter);
             } else if (counter % 2 === 0 && counter <= 9 && win === false) {
                 console.log("Player 2 turn");
+                playerOneCard.classList.remove('your-turn');
+                playerTwoCard.classList.add('your-turn');
                 const inputType = "O";
                 const input = prompt("Where do you want to place your O? (0-8)");
                 if (input >= 0 && input <= 8) {
@@ -194,6 +200,41 @@ const gameController = (function () {
 })();
 
 
+// function for making players
+const player = (function () {
+    const playerOneInput = document.getElementById('player-one-name');
+    const playerTwoInput = document.getElementById('player-two-name');
+    const getPlayerName = (playerNum) => {
+        if (playerNum === 1) {
+            playerOneForm.classList.remove('hidden');
+            playerOneCard.classList.add('hidden');
+        } else if (playerNum === 2) {
+            playerTwoForm.classList.remove('hidden');
+            playerTwoCard.classList.add('hidden');
+        }
+    };
 
-gameController.startGame();
+    const setPlayerName = (playerNum) => {
+        if (playerNum === 1) {
+            const playerOneName = playerOneInput.value;
+            console.log(playerOneName);
+            playerOneNameElement.innerHTML = playerOneName;
+            playerOneForm.classList.add('hidden');
+            playerOneCard.classList.remove('hidden');
+        } else if (playerNum === 2) {
+            const playerTwoName = playerTwoInput.value;
+            console.log(playerTwoName);
+            playerTwoNameElement.innerText = playerTwoName;
+            playerTwoForm.classList.add('hidden');
+            playerTwoCard.classList.remove('hidden');
+        }
+    };
+
+
+    return { getPlayerName, setPlayerName };
+})();
+
+
+
+// gameController.startGame();
 // gameController.playRound(1);

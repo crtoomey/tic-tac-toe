@@ -12,32 +12,58 @@
 <body>
     <h1>Tic Tac Toe</h1>
     <div class="main-container">
-        <div class="player-one">
-            <h3 class="placement-type">Xs</h3>
-            <h5 class="player-name">Player 1</h5>
-            <button>Enter Player 1 Info</button>
+
+        <div class="display-container">
+            <h3 class="display">Click Start Game to play.</h3>
         </div>
-        <div class="gameboard">
-            <div class="1 bottom-border right-border">1</div>
-            <div class="2 bottom-border right-border">2</div>
-            <div class="3 bottom-border">3</div>
-            <div class="4 bottom-border right-border">4</div>
-            <div class="5 bottom-border right-border">5</div>
-            <div class="6 bottom-border">6</div>
-            <div class="7 right-border">7</div>
-            <div class="8 right-border">8</div>
-            <div class="9">9</div>
-        </div>
-        <div class="player-two">
-            <h3 class="placement-type">Os</h3>
-            <h5 class="player-name">Player 2</h5>
-            <button>Enter Player 2 Info</button>
+
+        <div class="player-game-container">
+            <div class="player-one">
+                <div class="player-one-card">
+                    <h3 class="placement-type">Xs</h3>
+                    <h5 id="p1-name">Player 1</h5>
+                </div>
+                <form action="#" class="player-one-card hidden" id="player-one-form" onsubmit="event.preventDefault()">
+                    <h3>Xs</h3>
+                    <input type="text" name="player-one-name" id="player-one-name" value="Player 1">
+                    <button onclick="player.setPlayerName(1)">Submit</button>
+                    <!-- <input type="submit" name="submit" id="submit" onclick="player.setPlayerName(1)"> -->
+                </form>
+                <div class="player-one-btn">
+                    <button onclick="player.getPlayerName(1)">Enter Player 1 Name</button>
+                </div>
+            </div>
+            <div class="gameboard">
+                <div class="1 bottom-border right-border">1</div>
+                <div class="2 bottom-border right-border">2</div>
+                <div class="3 bottom-border">3</div>
+                <div class="4 bottom-border right-border">4</div>
+                <div class="5 bottom-border right-border">5</div>
+                <div class="6 bottom-border">6</div>
+                <div class="7 right-border">7</div>
+                <div class="8 right-border">8</div>
+                <div class="9">9</div>
+            </div>
+            <div class="player-two">
+                <div class="player-two-card">
+                    <h3 class="placement-type">Os</h3>
+                    <h5 id="p2-name">Player 2</h5>
+                </div>
+                <form action="#" class="player-two-card hidden" id="player-two-form" onsubmit="event.preventDefault()">
+                    <h3>Os</h3>
+                    <input type="text" name="player-two-name" id="player-two-name">
+                    <button onclick="player.setPlayerName(2)">Submit</button>
+                </form>
+                <div class="player-two-btn">
+                    <button onclick="player.getPlayerName(2)">Enter Player 2 Name</button>
+                </div>
+            </div>
         </div>
 
     </div>
     <div class="buttons">
-        <button>Start Game</button>
-        <button>Restart Game</button>
+        <button onclick="gameController.startGame()">Start Game</button>
+        <button class="hidden">Restart Game</button>
     </div>
 </body>
 
