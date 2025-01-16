@@ -30,19 +30,20 @@
                     <!-- <input type="submit" name="submit" id="submit" onclick="player.setPlayerName(1)"> -->
                 </form>
                 <div class="player-one-btn">
-                    <button onclick="player.getPlayerName(1)">Enter Player 1 Name</button>
+                    <button class="enter-player1-info-btn" onclick="player.showPlayerNameForm(1)">Enter Player 1
+                        Name</button>
                 </div>
             </div>
             <div class="gameboard">
-                <div class="1 bottom-border right-border">1</div>
-                <div class="2 bottom-border right-border">2</div>
-                <div class="3 bottom-border">3</div>
-                <div class="4 bottom-border right-border">4</div>
-                <div class="5 bottom-border right-border">5</div>
-                <div class="6 bottom-border">6</div>
-                <div class="7 right-border">7</div>
-                <div class="8 right-border">8</div>
-                <div class="9">9</div>
+                <div onclick="gameboard.updateBoard(0)" class="gb-square place1 bottom-border right-border">1</div>
+                <div onclick="gameboard.updateBoard(1)" class="gb-square place2 bottom-border right-border">2</div>
+                <div onclick="gameboard.updateBoard(2)" class="gb-square place3 bottom-border">3</div>
+                <div onclick="gameboard.updateBoard(3)" class="gb-square place4 bottom-border right-border">4</div>
+                <div onclick="gameboard.updateBoard(4)" class="gb-square place5 bottom-border right-border">5</div>
+                <div onclick="gameboard.updateBoard(5)" class="gb-square place6 bottom-border">6</div>
+                <div onclick="gameboard.updateBoard(6)" class="gb-square place7 right-border">7</div>
+                <div onclick="gameboard.updateBoard(7)" class="gb-square place8 right-border">8</div>
+                <div onclick="gameboard.updateBoard(8)" class="gb-square place9">9</div>
             </div>
             <div class="player-two">
                 <div class="player-two-card">
@@ -55,15 +56,16 @@
                     <button onclick="player.setPlayerName(2)">Submit</button>
                 </form>
                 <div class="player-two-btn">
-                    <button onclick="player.getPlayerName(2)">Enter Player 2 Name</button>
+                    <button class="enter-player2-info-btn" onclick="player.showPlayerNameForm(2)">Enter Player 2
+                        Name</button>
                 </div>
             </div>
         </div>
 
     </div>
     <div class="buttons">
-        <button onclick="gameController.startGame()">Start Game</button>
-        <button class="hidden">Restart Game</button>
+        <button class="start-game-btn" onclick="gameController.startGame()">Start Game</button>
+        <button class="restart-game-btn hidden">Restart Game</button>
     </div>
 </body>
 
