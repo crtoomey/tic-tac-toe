@@ -9,6 +9,9 @@ const player1InfoButton = document.querySelector('.enter-player1-info-btn');
 const player2InfoButton = document.querySelector('.enter-player2-info-btn');
 const startGameButton = document.querySelector('.start-game-btn');
 const restartGameButton = document.querySelector('.restart-game-btn');
+const gbSquares = document.querySelectorAll('.gb-square');
+
+console.log(gbSquares)
 
 let counter = 0;
 // function for gameboard
@@ -55,6 +58,7 @@ const gameboard = (function () {
             displayBoard();
         } else {
             counter = 11
+            gameController.gameTied();
         }
     }
 
@@ -107,37 +111,21 @@ let win = false;
 const gameController = (function () {
 
     const startGame = () => {
-        gameboard.displayBoard();
         startGameButton.classList.add('hidden');
         restartGameButton.classList.remove('hidden');
         player1InfoButton.classList.add('hidden');
         player2InfoButton.classList.add('hidden');
+        gbSquares.forEach(square => {
+            square.classList.remove('unclickable');
+        });
         counter = 1;
+        gameboard.displayBoard();
         gameController.updateDisplay();
     }
 
-    // const restartGame = () => {
-    //     gameboard.boardArray = ["_", "_", "_", "_", "_", "_", "_", "_", "_"];
-    //     document.querySelector('.place1').innerText = gameboard.boardArray[0];
-    //     document.querySelector('.place2').innerText = gameboard.boardArray[1];
-    //     document.querySelector('.place3').innerText = gameboard.boardArray[2];
-    //     document.querySelector('.place4').innerText = gameboard.boardArray[3];
-    //     document.querySelector('.place5').innerText = gameboard.boardArray[4];
-    //     document.querySelector('.place6').innerText = gameboard.boardArray[5];
-    //     document.querySelector('.place7').innerText = gameboard.boardArray[6];
-    //     document.querySelector('.place8').innerText = gameboard.boardArray[7];
-    //     document.querySelector('.place9').innerText = gameboard.boardArray[8];
-    //     startGameButton.classList.remove('hidden');
-    //     restartGameButton.classList.add('hidden');
-    //     player1InfoButton.classList.remove('hidden');
-    //     player2InfoButton.classList.remove('hidden');
-    //     playerTwoCard.classList.remove('your-turn');
-    //     playerOneCard.classList.remove('your-turn');
-    //     displayElement.innerText = "Click Start Game to play."
-    //     counter = 0;
-    //     gameController.updateDisplay();
-    //     console.log(gameboard.boardArray)
-    // }
+    const restartGame = () => {
+        location.reload(true);
+    }
 
     const updateDisplay = () => {
         const player1 = player.getPlayerName(1);
@@ -322,7 +310,7 @@ const gameController = (function () {
         win = false;
     }
 
-    return { startGame, checkWin, gameWon, gameTied, updateDisplay };
+    return { startGame, restartGame, checkWin, gameWon, gameTied, updateDisplay };
 })();
 
 

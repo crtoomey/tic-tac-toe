@@ -209,3 +209,8 @@ button:hover {
     color: whitesmoke;
     border-radius: 7px;
 }
+
+/* style to make divs unclickable */
+.unclickable {
+    pointer-events: none;
+}

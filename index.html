@@ -36,22 +36,23 @@
             </div>
             <div class="gameboard">
                 <div onclick="gameboard.updateBoard(0); gameController.updateDisplay();"
-                    class="gb-square place1 bottom-border right-border">1</div>
+                    class="unclickable gb-square place1 bottom-border right-border">1</div>
                 <div onclick="gameboard.updateBoard(1); gameController.updateDisplay();"
-                    class="gb-square place2 bottom-border right-border">2</div>
+                    class="unclickable gb-square place2 bottom-border right-border">2</div>
                 <div onclick="gameboard.updateBoard(2); gameController.updateDisplay();"
-                    class="gb-square place3 bottom-border">3</div>
+                    class="unclickable gb-square place3 bottom-border">3</div>
                 <div onclick="gameboard.updateBoard(3); gameController.updateDisplay();"
-                    class="gb-square place4 bottom-border right-border">4</div>
+                    class="unclickable gb-square place4 bottom-border right-border">4</div>
                 <div onclick="gameboard.updateBoard(4); gameController.updateDisplay();"
-                    class="gb-square place5 bottom-border right-border">5</div>
+                    class="unclickable gb-square place5 bottom-border right-border">5</div>
                 <div onclick="gameboard.updateBoard(5); gameController.updateDisplay();"
-                    class="gb-square place6 bottom-border">6</div>
+                    class="unclickable gb-square place6 bottom-border">6</div>
                 <div onclick="gameboard.updateBoard(6); gameController.updateDisplay();"
-                    class="gb-square place7 right-border">7</div>
+                    class="unclickable gb-square place7 right-border">7</div>
                 <div onclick="gameboard.updateBoard(7); gameController.updateDisplay();"
-                    class="gb-square place8 right-border">8</div>
-                <div onclick="gameboard.updateBoard(8); gameController.updateDisplay();" class="gb-square place9">9
+                    class="unclickable gb-square place8 right-border">8</div>
+                <div onclick="gameboard.updateBoard(8); gameController.updateDisplay();"
+                    class="unclickable gb-square place9">9
                 </div>
 
             </div>
@@ -75,7 +76,7 @@
     </div>
     <div class="buttons">
         <button class="start-game-btn" onclick="gameController.startGame()">Start Game</button>
-        <button class="restart-game-btn hidden" onclick="location.reload(true)">Restart Game</button>
+        <button class="restart-game-btn hidden" onclick="gameController.restartGame()">Restart Game</button>
     </div>
 </body>
 
